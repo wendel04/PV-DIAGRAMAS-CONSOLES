@@ -64,14 +64,12 @@ export default function App() {
     const carousel = carouselRef.current;
     const carouselTop = carouselTopRef.current;
     
-    let isPausedBottom = false;
-    let isPausedTop = false;
     let scrollRAFBottom: number;
     let scrollRAFTop: number;
     const scrollSpeed = 1;
 
     const scrollCarouselBottom = () => {
-      if (carousel && !isPausedBottom) {
+      if (carousel) {
         carousel.scrollLeft += scrollSpeed;
         if (carousel.scrollLeft >= carousel.scrollWidth / 2) {
           carousel.scrollLeft = 0;
@@ -81,7 +79,7 @@ export default function App() {
     };
 
     const scrollCarouselTop = () => {
-      if (carouselTop && !isPausedTop) {
+      if (carouselTop) {
         carouselTop.scrollLeft -= scrollSpeed;
         if (carouselTop.scrollLeft <= 1) {
           carouselTop.scrollLeft = carouselTop.scrollWidth / 2;
@@ -90,50 +88,19 @@ export default function App() {
       scrollRAFTop = requestAnimationFrame(scrollCarouselTop);
     };
 
-    const handleMouseEnterBottom = () => { isPausedBottom = true; };
-    const handleMouseLeaveBottom = () => { isPausedBottom = false; };
-    const handleTouchStartBottom = () => { isPausedBottom = true; };
-    const handleTouchEndBottom = () => { isPausedBottom = false; };
-
-    const handleMouseEnterTop = () => { isPausedTop = true; };
-    const handleMouseLeaveTop = () => { isPausedTop = false; };
-    const handleTouchStartTop = () => { isPausedTop = true; };
-    const handleTouchEndTop = () => { isPausedTop = false; };
-
     if (carousel) {
-      carousel.addEventListener('mouseenter', handleMouseEnterBottom);
-      carousel.addEventListener('mouseleave', handleMouseLeaveBottom);
-      carousel.addEventListener('touchstart', handleTouchStartBottom, { passive: true });
-      carousel.addEventListener('touchend', handleTouchEndBottom);
       scrollRAFBottom = requestAnimationFrame(scrollCarouselBottom);
     }
 
     if (carouselTop) {
       // Set initial scroll to avoiding starting at zero limit
       carouselTop.scrollLeft = carouselTop.scrollWidth / 2;
-      carouselTop.addEventListener('mouseenter', handleMouseEnterTop);
-      carouselTop.addEventListener('mouseleave', handleMouseLeaveTop);
-      carouselTop.addEventListener('touchstart', handleTouchStartTop, { passive: true });
-      carouselTop.addEventListener('touchend', handleTouchEndTop);
       scrollRAFTop = requestAnimationFrame(scrollCarouselTop);
     }
 
     return () => {
       if (scrollRAFBottom) cancelAnimationFrame(scrollRAFBottom);
       if (scrollRAFTop) cancelAnimationFrame(scrollRAFTop);
-      
-      if (carousel) {
-        carousel.removeEventListener('mouseenter', handleMouseEnterBottom);
-        carousel.removeEventListener('mouseleave', handleMouseLeaveBottom);
-        carousel.removeEventListener('touchstart', handleTouchStartBottom);
-        carousel.removeEventListener('touchend', handleTouchEndBottom);
-      }
-      if (carouselTop) {
-        carouselTop.removeEventListener('mouseenter', handleMouseEnterTop);
-        carouselTop.removeEventListener('mouseleave', handleMouseLeaveTop);
-        carouselTop.removeEventListener('touchstart', handleTouchStartTop);
-        carouselTop.removeEventListener('touchend', handleTouchEndTop);
-      }
     };
   }, []);
 
@@ -151,33 +118,33 @@ export default function App() {
 
   // Carousel item arrays for clean rendering
   const carouselImages = [
-    { src: "https://i.imgur.com/pE3gfYR.png", alt: "Demonstração 1" },
-    { src: "https://i.imgur.com/gwZsEwj.png", alt: "Demonstração 2" },
-    { src: "https://i.imgur.com/7kVyaTd.png", alt: "Demonstração 3" },
-    { src: "https://i.imgur.com/i4wYwZT.png", alt: "Demonstração 4" },
-    { src: "https://i.imgur.com/gGlBGXw.png", alt: "Demonstração 5" },
-    { src: "https://i.imgur.com/NFXDUjB.png", alt: "Demonstração 6" },
-    { src: "https://i.imgur.com/ktoFOpH.png", alt: "Demonstração 7" },
-    { src: "https://i.imgur.com/2JP3PRa.png", alt: "Demonstração 8" },
-    { src: "https://i.imgur.com/zzywBim.png", alt: "Demonstração 9" },
-    { src: "https://i.imgur.com/xwwNH8E.png", alt: "Demonstração 10" },
-    { src: "https://i.imgur.com/i3ofUug.png", alt: "Demonstração 11" },
-    { src: "https://i.imgur.com/NIlzeL2.png", alt: "Demonstração 12" },
-    { src: "https://i.imgur.com/gR9eQp9.png", alt: "Demonstração 13" },
-    { src: "https://i.imgur.com/9QPw1so.png", alt: "Demonstração 14" },
-    { src: "https://i.imgur.com/doJficV.png", alt: "Demonstração 15" }
+    { src: "https://i.imgur.com/pE3gfYRl.webp", alt: "Demonstração 1" },
+    { src: "https://i.imgur.com/gwZsEwjl.webp", alt: "Demonstração 2" },
+    { src: "https://i.imgur.com/7kVyaTdl.webp", alt: "Demonstração 3" },
+    { src: "https://i.imgur.com/i4wYwZTl.webp", alt: "Demonstração 4" },
+    { src: "https://i.imgur.com/gGlBGXwl.webp", alt: "Demonstração 5" },
+    { src: "https://i.imgur.com/NFXDUjBl.webp", alt: "Demonstração 6" },
+    { src: "https://i.imgur.com/ktoFOpHl.webp", alt: "Demonstração 7" },
+    { src: "https://i.imgur.com/2JP3PRal.webp", alt: "Demonstração 8" },
+    { src: "https://i.imgur.com/zzywBiml.webp", alt: "Demonstração 9" },
+    { src: "https://i.imgur.com/xwwNH8El.webp", alt: "Demonstração 10" },
+    { src: "https://i.imgur.com/i3ofUugl.webp", alt: "Demonstração 11" },
+    { src: "https://i.imgur.com/NIlzeL2l.webp", alt: "Demonstração 12" },
+    { src: "https://i.imgur.com/gR9eQp9l.webp", alt: "Demonstração 13" },
+    { src: "https://i.imgur.com/9QPw1sol.webp", alt: "Demonstração 14" },
+    { src: "https://i.imgur.com/doJficVl.webp", alt: "Demonstração 15" }
   ];
 
   const carouselImagesTop = [
-    { src: "https://i.imgur.com/1wGfI07.png", alt: "Esquema Técnico 1" },
-    { src: "https://i.imgur.com/MoJUrjM.png", alt: "Esquema Técnico 2" },
-    { src: "https://i.imgur.com/pPu8kLu.png", alt: "Esquema Técnico 3" },
-    { src: "https://i.imgur.com/wS4UzwM.png", alt: "Esquema Técnico 4" },
-    { src: "https://i.imgur.com/o7oniN3.png", alt: "Esquema Técnico 5" },
-    { src: "https://i.imgur.com/4Tt7R1V.png", alt: "Esquema Técnico 6" },
-    { src: "https://i.imgur.com/WNeXsKq.png", alt: "Esquema Técnico 7" },
-    { src: "https://i.imgur.com/D5IgRwk.png", alt: "Esquema Técnico 8" },
-    { src: "https://i.imgur.com/XolV2WM.png", alt: "Esquema Técnico 9" }
+    { src: "https://i.imgur.com/1wGfI07l.webp", alt: "Esquema Técnico 1" },
+    { src: "https://i.imgur.com/MoJUrjMl.webp", alt: "Esquema Técnico 2" },
+    { src: "https://i.imgur.com/pPu8kLul.webp", alt: "Esquema Técnico 3" },
+    { src: "https://i.imgur.com/wS4UzwMl.webp", alt: "Esquema Técnico 4" },
+    { src: "https://i.imgur.com/o7oniN3l.webp", alt: "Esquema Técnico 5" },
+    { src: "https://i.imgur.com/4Tt7R1Vl.webp", alt: "Esquema Técnico 6" },
+    { src: "https://i.imgur.com/WNeXsKql.webp", alt: "Esquema Técnico 7" },
+    { src: "https://i.imgur.com/D5IgRwkl.webp", alt: "Esquema Técnico 8" },
+    { src: "https://i.imgur.com/XolV2WMl.webp", alt: "Esquema Técnico 9" }
   ];
 
   return (
@@ -204,11 +171,13 @@ export default function App() {
           </h1>
           
           {/* Imagem Otimizada com drop-shadow técnico */}
-          <div id="main-mockup-container" className="w-full max-w-4xl aspect-video flex items-center justify-center mb-8 sm:mb-10 relative">
+          <div id="main-mockup-container" className="w-full max-w-4xl aspect-video flex items-center justify-center mt-6 mb-10 sm:mt-0 sm:mb-10 relative">
             <img 
-              src="https://i.imgur.com/fasv8Xu.png" 
+              src="https://i.imgur.com/fasv8Xu.webp" 
               alt="Mockup Principal do Pack" 
-              className="w-full h-full object-contain px-2 sm:px-4 py-2 drop-shadow-[0_0_35px_rgba(30,58,138,0.4)] scale-[1.12] sm:scale-[1.15]" 
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-contain px-1 sm:px-4 py-2 drop-shadow-[0_0_35px_rgba(30,58,138,0.4)] scale-[1.24] sm:scale-[1.15]" 
             />
           </div>
           
@@ -248,7 +217,7 @@ export default function App() {
           <div 
             id="auto-carousel-top" 
             ref={carouselTopRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto touch-pan-x hide-scrollbar py-6 px-4 sm:px-8 md:px-16 items-center mb-6"
+            className="flex gap-4 sm:gap-6 overflow-hidden pointer-events-none select-none py-6 px-4 sm:px-8 md:px-16 items-center mb-6"
           >
             {/* Loop duplicado para renderizar o scroll infinito */}
             {[...carouselImagesTop, ...carouselImagesTop].map((img, index) => (
@@ -266,7 +235,7 @@ export default function App() {
           <div 
             id="auto-carousel" 
             ref={carouselRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto touch-pan-x hide-scrollbar py-6 px-4 sm:px-8 md:px-16 items-center"
+            className="flex gap-4 sm:gap-6 overflow-hidden pointer-events-none select-none py-6 px-4 sm:px-8 md:px-16 items-center"
           >
             {/* Loop duplicado para renderizar o scroll infinito */}
             {[...carouselImages, ...carouselImages].map((img, index) => (
@@ -287,15 +256,15 @@ export default function App() {
               DIAGRAMAS ELÉTRICOS PARA:
             </span>
             <div id="brands-logos" className="flex items-center justify-center gap-8 sm:gap-14 transition-all duration-500">
-              <img src="https://i.imgur.com/VhvTUZ6.png" alt="Xbox Logo" loading="lazy" decoding="async" className="h-12 sm:h-20 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
-              <img src="https://i.imgur.com/UopB0TB.png" alt="PlayStation Logo" loading="lazy" decoding="async" className="h-12 sm:h-20 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
-              <img src="https://i.imgur.com/wCXqmut.png" alt="Nintendo Logo" loading="lazy" decoding="async" className="h-8 sm:h-12 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
+              <img src="https://i.imgur.com/VhvTUZ6.webp" alt="Xbox Logo" loading="lazy" decoding="async" className="h-12 sm:h-20 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
+              <img src="https://i.imgur.com/UopB0TB.webp" alt="PlayStation Logo" loading="lazy" decoding="async" className="h-12 sm:h-20 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
+              <img src="https://i.imgur.com/wCXqmut.webp" alt="Nintendo Logo" loading="lazy" decoding="async" className="h-8 sm:h-12 w-auto object-contain drop-shadow-sm hover:scale-110 transition-transform filter brightness-95" />
             </div>
             
             {/* Imagem estática extra destacada abaixo dos logotipos */}
             <div className="mt-6 sm:mt-10 w-full max-w-[340px] sm:max-w-xl md:max-w-2xl mx-auto px-2">
               <img 
-                src="https://i.imgur.com/zsIqiQw.png" 
+                src="https://i.imgur.com/zsIqiQw.webp" 
                 alt="Informações Adicionais sobre os Diagramas" 
                 loading="lazy" 
                 decoding="async" 
@@ -569,13 +538,13 @@ export default function App() {
           <h2 id="deliverables-title" className="text-[22px] sm:text-3xl md:text-4xl font-bold text-center mb-12 sm:mb-16 text-balance leading-snug uppercase">VEJA TUDO O QUE VOCÊ VAI RECEBER NO PACK</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
             
-            <div className="w-full aspect-[4/3] flex items-center justify-center relative">
+            <div className="w-full aspect-[4/3] flex items-center justify-center relative my-6 sm:my-0">
               <img 
-                src="https://i.imgur.com/fasv8Xu.png" 
+                src="https://i.imgur.com/fasv8Xu.webp" 
                 alt="Conteúdo do Pack" 
                 loading="lazy" 
                 decoding="async" 
-                className="w-full h-full object-contain p-2 sm:p-4 drop-shadow-[0_0_35px_rgba(30,58,138,0.3)] scale-[1.05]" 
+                className="w-full h-full object-contain p-2 sm:p-4 drop-shadow-[0_0_35px_rgba(30,58,138,0.3)] scale-[1.20] sm:scale-[1.05]" 
               />
             </div>
             
@@ -660,7 +629,7 @@ export default function App() {
             {/* Cards brancos, divisórias claires */}
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-blue-100/60 flex flex-col hover:shadow-md transition-shadow">
               <div className="w-full h-[280px] sm:h-[320px] bg-[#f0f4f9]/50 flex items-center justify-center relative overflow-hidden border-b border-blue-100/60 p-1 sm:p-2">
-                <img src="https://i.imgur.com/a6ZcEgx.png" alt="Checklist de Diagnóstico Rápido" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
+                <img src="https://i.imgur.com/a6ZcEgxl.webp" alt="Checklist de Diagnóstico Rápido" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
               </div>
               <div className="pt-2 sm:pt-3 pb-6 sm:pb-8 px-5 sm:px-8 flex-1">
                 <div className="text-[#166534] font-bold text-xl sm:text-2xl mb-2 uppercase flex items-center gap-2 tracking-wide"><i className="ph-fill ph-gift text-2xl sm:text-3xl"></i> Bônus 1</div>
@@ -676,7 +645,7 @@ export default function App() {
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-blue-100/60 flex flex-col hover:shadow-md transition-shadow">
               <div className="w-full h-[280px] sm:h-[320px] bg-[#f0f4f9]/50 flex items-center justify-center relative overflow-hidden border-b border-blue-100/60 p-1 sm:p-2">
-                <img src="https://i.imgur.com/MmSy0lC.png" alt="Guia de Defeitos Crônicos" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
+                <img src="https://i.imgur.com/MmSy0lCl.webp" alt="Guia de Defeitos Crônicos" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
               </div>
               <div className="pt-2 sm:pt-3 pb-6 sm:pb-8 px-5 sm:px-8 flex-1">
                 <div className="text-[#166534] font-bold text-xl sm:text-2xl mb-2 uppercase flex items-center gap-2 tracking-wide"><i className="ph-fill ph-gift text-2xl sm:text-3xl"></i> Bônus 2</div>
@@ -692,12 +661,12 @@ export default function App() {
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-blue-100/60 flex flex-col hover:shadow-md transition-shadow">
               <div className="w-full h-[280px] sm:h-[320px] bg-[#f0f4f9]/50 flex items-center justify-center relative overflow-hidden border-b border-blue-100/60 p-1 sm:p-2">
-                <img src="https://i.imgur.com/oPGA3By.png" alt="Guia de Equivalência de Componentes" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.18] hover:scale-[1.22] transition-transform duration-500 drop-shadow-md" />
+                <img src="https://i.imgur.com/oPGA3Byl.webp" alt="Guia de Equivalência de Componentes" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.18] hover:scale-[1.22] transition-transform duration-500 drop-shadow-md" />
               </div>
               <div className="pt-2 sm:pt-3 pb-6 sm:pb-8 px-5 sm:px-8 flex-1">
                 <div className="text-[#166534] font-bold text-xl sm:text-2xl mb-2 uppercase flex items-center gap-2 tracking-wide"><i className="ph-fill ph-gift text-2xl sm:text-3xl"></i> Bônus 3</div>
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1 text-balance">Guia de Equivalência de Componentes</h3>
-                <p className="text-slate-800 text-xs sm:text-sm text-balance mt-1 font-bold">Saiba substituições possíveis e não fique travado quando não tiver o componente exato.</p>
+                <p className="text-slate-800 text-xs sm:text-sm text-balance mt-1 font-bold">Saiba substituições possíveis e não fique travado quando não tiver o component exato.</p>
                 <div className="mt-3.5 flex">
                   <span className="inline-flex items-center gap-1.5 bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-xs sm:text-sm font-black uppercase tracking-wider border border-red-200 shadow-sm">
                     <i className="ph-fill ph-gift text-sm sm:text-base"></i> BÔNUS GRATUITO HOJE
@@ -708,7 +677,7 @@ export default function App() {
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-blue-100/60 flex flex-col hover:shadow-md transition-shadow">
               <div className="w-full h-[280px] sm:h-[320px] bg-[#f0f4f9]/50 flex items-center justify-center relative overflow-hidden border-b border-blue-100/60 p-1 sm:p-2">
-                <img src="https://i.imgur.com/LvYtxkq.png" alt="Atualizações de Novos Modelos" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
+                <img src="https://i.imgur.com/LvYtxkql.webp" alt="Atualizações de Novos Modelos" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" />
               </div>
               <div className="pt-2 sm:pt-3 pb-6 sm:pb-8 px-5 sm:px-8 flex-1">
                 <div className="text-[#166534] font-bold text-xl sm:text-2xl mb-2 uppercase flex items-center gap-2 tracking-wide"><i className="ph-fill ph-gift text-2xl sm:text-3xl"></i> Bônus 4</div>
@@ -724,7 +693,7 @@ export default function App() {
 
             <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-blue-100/60 flex flex-col hover:shadow-md transition-shadow">
               <div className="w-full h-[280px] sm:h-[320px] bg-[#f0f4f9]/50 flex items-center justify-center relative overflow-hidden border-b border-blue-100/60 p-1 sm:p-2">
-                <img src="https://i.imgur.com/gogJXXy.png" alt="Tabela Mestre de Equivalência de SMD's" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" referrerPolicy="no-referrer" />
+                <img src="https://i.imgur.com/gogJXXyl.webp" alt="Tabela Mestre de Equivalência de SMD's" loading="lazy" decoding="async" className="w-full h-full object-contain scale-[1.05] hover:scale-110 transition-transform duration-500 drop-shadow-md" referrerPolicy="no-referrer" />
               </div>
               <div className="pt-2 sm:pt-3 pb-6 sm:pb-8 px-5 sm:px-8 flex-1">
                 <div className="text-[#166534] font-bold text-xl sm:text-2xl mb-2 uppercase flex items-center gap-2 tracking-wide"><i className="ph-fill ph-gift text-2xl sm:text-3xl"></i> Bônus 5</div>
@@ -762,8 +731,8 @@ export default function App() {
               
               <div>
                 <h3 className="text-lg sm:text-[22px] md:text-[26px] font-bold text-white mb-5 sm:mb-6 text-center leading-snug tracking-wider text-balance">PACOTE COMPLETO + <br className="hidden sm:block" /> 5 BÔNUS EXCLUSIVOS</h3>
-                <div className="w-full aspect-[4/3] flex items-center justify-center mb-3 sm:mb-4">
-                  <img src="https://i.imgur.com/fasv8Xu.png" alt="Pacote Completo com Bônus" loading="lazy" decoding="async" className="w-full h-full object-contain p-2 sm:p-4 drop-shadow-lg scale-[1.15]" />
+                <div className="w-full aspect-[4/3] flex items-center justify-center my-4 sm:my-0 mb-5 sm:mb-4">
+                  <img src="https://i.imgur.com/fasv8Xu.webp" alt="Pacote Completo com Bônus" loading="lazy" decoding="async" className="w-full h-full object-contain p-1 sm:p-4 drop-shadow-lg scale-[1.25] sm:scale-[1.15]" />
                 </div>
                 <div className="text-center mb-6 sm:mb-8 mt-2 w-full">
                   <div className="inline-block bg-[#166534]/25 border border-[#a3e635]/30 text-[#a3e635] rounded-full py-1.5 sm:py-2 px-3 sm:px-5 text-[10px] sm:text-[13px] font-extrabold whitespace-nowrap">
@@ -840,7 +809,7 @@ export default function App() {
                 
                 <div className="mt-6 flex justify-center">
                   <img 
-                    src="https://i.imgur.com/doNsqVS.png" 
+                    src="https://i.imgur.com/doNsqVS.webp" 
                     alt="Selo de Segurança e Garantia de Satisfação" 
                     loading="lazy" 
                     decoding="async" 
