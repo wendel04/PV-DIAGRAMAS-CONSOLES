@@ -1,0 +1,6 @@
+{
+  "name": "Replicador de Páginas de Vendas",
+  "description": "Replicador e criador de landing pages de alta conversão com editor visual em tempo real e gerador de copy persuasivo com o modelo Gemini.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
