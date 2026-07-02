@@ -801,7 +801,7 @@ export default function App() {
                   <span className="block text-4xl sm:text-[46px] md:text-[52px] font-black text-[#a3e635] leading-none mt-1 sm:mt-2">R$ 27,90</span>
                 </div>
                 <a 
-                  href="https://pay.wiapy.com/uD3THG8VP" 
+                  href="https://pay.hotmart.com/D106572077F?off=2zkr8n8s" 
                   className="block text-center w-full bg-[#a3e635] hover:bg-[#bef264] text-[#051126] font-extrabold py-4 sm:py-5 rounded-full transition-all uppercase text-sm sm:text-lg shadow-[0_0_25px_rgba(163,230,53,0.5)] hover:scale-105 px-4"
                 >
                   Quero o Pacote Completo
