@@ -47,24 +47,24 @@ const faq = [
 ];
 
 const topCarouselImages = [
-  "/images/carrossel/cima-1.png",
-  "/images/carrossel/cima-2.png",
-  "/images/carrossel/cima-3.png",
-  "/images/carrossel/cima-4.png",
-  "/images/carrossel/cima-5.png",
+  "/images/carrossel/cima-1.webp",
+  "/images/carrossel/cima-2.webp",
+  "/images/carrossel/cima-3.webp",
+  "/images/carrossel/cima-4.webp",
+  "/images/carrossel/cima-5.webp",
 ];
 
 const bottomCarouselImages = [
-  "/images/carrossel/baixo-1.png",
-  "/images/carrossel/baixo-2.png",
-  "/images/carrossel/baixo-3.png",
-  "/images/carrossel/baixo-4.png",
-  "/images/carrossel/baixo-5.png",
+  "/images/carrossel/baixo-1.webp",
+  "/images/carrossel/baixo-2.webp",
+  "/images/carrossel/baixo-3.webp",
+  "/images/carrossel/baixo-4.webp",
+  "/images/carrossel/baixo-5.webp",
 ];
 
-function MediaSlot({ className = "", label, src }: { className?: string; label: string; src?: string }) {
+function MediaSlot({ className = "", label, src, priority = false }: { className?: string; label: string; src?: string; priority?: boolean }) {
   if (src) {
-    return <div className={`media-slot media-filled ${className}`}><img src={src} alt={label} /></div>;
+    return <div className={`media-slot media-filled ${className}`}><img src={src} alt={label} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : "auto"} decoding="async" /></div>;
   }
 
   return <div className={`media-slot ${className}`} role="img" aria-label={`Espaço reservado para ${label}`} />;
@@ -148,7 +148,7 @@ export default function Home() {
             <span className="headline-line">DIAGNOSTICAR FALHAS NA</span>{" "}
             <span className="headline-line">INJEÇÃO ELETRÔNICA</span>
           </h1>
-          <MediaSlot className="hero-mockup" label="Mockup principal do Kit Mapas Diagnósticos Sem Troca-Troca" src="/images/mockups/mockup-principal.png?v=hd-1080" />
+          <MediaSlot className="hero-mockup" label="Mockup principal do Kit Mapas Diagnósticos Sem Troca-Troca" src="/images/mockups/mockup-principal.webp?v=optimized-1" priority />
           <p className="hero-copy">Consulte o sintoma ou código encontrado, veja as causas mais prováveis e siga uma sequência simples de verificações para descobrir o defeito em 5 minutos. <b>Por apenas R$17,90</b></p>
           <div className="micro-benefit"><ThinCheck className="micro-check" /><span>Saiba por onde começar o diagnóstico</span></div>
           <div className="micro-benefit"><ThinCheck className="micro-check" /><span>Evite trocar peças sem certeza</span></div>
@@ -168,7 +168,7 @@ export default function Home() {
         <div className="container center process-row">
           <span>🚗<br /><b>Consulte o sintoma</b></span><i>→</i><span>🔍<br /><b>Siga a sequência de testes</b></span><i>→</i><span><ThinCheck className="process-check" /><br /><b>Encontre o defeito</b></span>
         </div>
-        <div className="container center"><MediaSlot className="comparison-mockup" label="Mapa visual de diagnóstico em destaque" src="/images/carrossel/cima-5.png?v=1" /></div>
+        <div className="container center"><MediaSlot className="comparison-mockup" label="Mapa visual de diagnóstico em destaque" src="/images/carrossel/cima-5.webp?v=optimized-1" /></div>
       </section>
 
       <section className="benefits sky-gradient">
@@ -206,7 +206,7 @@ export default function Home() {
       <section className="what-you-get deep-blue">
         <div className="container narrow center">
           <h2>VEJA TUDO O QUE VOCÊ VAI RECEBER</h2>
-          <MediaSlot className="bundle-mockup" label="Mockup do produto principal" src="/images/mockups/mockup-principal.png?v=hd-1080" />
+          <MediaSlot className="bundle-mockup" label="Mockup do produto principal" src="/images/mockups/mockup-principal.webp?v=optimized-1" />
           <div className="receive-card">
             <h3>Você vai receber:</h3>
             <p>Mapas prontos para consultar durante o serviço.</p>
@@ -224,7 +224,7 @@ export default function Home() {
           <div className="bonus-grid">
             {bonuses.map(([number, title, copy], index) => (
               <article key={number}>
-                <MediaSlot className="bonus-image" label={`Mockup do bônus ${index + 1}`} src={`/images/mockups/bonus-${index + 1}.png?v=hd-1080`} />
+                <MediaSlot className="bonus-image" label={`Mockup do bônus ${index + 1}`} src={`/images/mockups/bonus-${index + 1}.webp?v=optimized-1`} />
                 <div className="bonus-copy"><h3>🎁 {number}</h3><h4>{title}</h4><p>{copy}</p><span>🎁 BÔNUS GRATUITO HOJE</span></div>
               </article>
             ))}
@@ -238,21 +238,21 @@ export default function Home() {
           <div className="pricing-grid">
             <article className="price-card basic">
               <h3>PACOTE BÁSICO</h3>
-              <MediaSlot className="price-mockup" label="Mockup do pacote básico" src="/images/mockups/pacote-basico.png?v=hd-1080" />
+              <MediaSlot className="price-mockup" label="Mockup do pacote básico" src="/images/mockups/pacote-basico.webp?v=optimized-1" />
               <ul>{basicItems.map((text) => <li key={text}><ThinCheck />{text}</li>)}</ul>
               <div className="price"><small>De R$ 47,90</small><strong>Por apenas R$ 17,90</strong></div>
-              <button>QUERO ACESSO BÁSICO</button>
+              <a className="checkout-button" href="https://checkout.wiven.com.br/checkout/cmrkoamex0zlz01pqdtv13mqt?offer=U9FXZPH">QUERO ACESSO BÁSICO</a>
               <div className="upsell"><b>AINDA DÁ TEMPO DE LEVAR A MELHOR OPÇÃO!</b><br />⬇️ Leve o kit completo com todos os bônus ⬇️</div>
             </article>
             <article className="price-card complete">
               <div className="recommended">PACOTE COMPLETO — RECOMENDADO</div>
               <h3>PACOTE COMPLETO</h3>
-              <MediaSlot className="price-mockup" label="Mockup do pacote completo" src="/images/mockups/mockup-principal.png?v=hd-1080" />
+              <MediaSlot className="price-mockup" label="Mockup do pacote completo" src="/images/mockups/mockup-principal.webp?v=optimized-1" />
               <ul>{completeItems.map((text) => <li key={text}><ThinCheck />{text}</li>)}</ul>
               <div className="exclusive"><b>BÔNUS EXCLUSIVOS:</b>{bonuses.map(([, title]) => <p key={title}>🎁 {title}</p>)}</div>
               <div className="saving">VOCÊ LEVA O KIT COMPLETO COM TODOS OS BÔNUS</div>
               <div className="price"><small>De R$ 77,90</small><strong>Por apenas R$ 27,90</strong></div>
-              <button>QUERO ACESSO COMPLETO</button>
+              <a className="checkout-button" href="https://checkout.wiven.com.br/checkout/cmrkoamex0zlz01pqdtv13mqt?offer=5ML7DCH">QUERO ACESSO COMPLETO</a>
             </article>
           </div>
         </div>
@@ -260,7 +260,7 @@ export default function Home() {
 
       <section className="guarantee section-light">
         <div className="container narrow center">
-          <img className="guarantee-badge" src="/images/mockups/selo-30-dias.png?v=1" alt="Selo de garantia de 30 dias" />
+          <img className="guarantee-badge" src="/images/mockups/selo-30-dias.webp?v=optimized-1" alt="Selo de garantia de 30 dias" loading="lazy" decoding="async" />
           <h2>VOCÊ TEM 30 DIAS PARA TESTAR SEM RISCO</h2>
           <p>Você recebe acesso imediato ao Kit Mapas Diagnósticos Sem Troca-Troca e pode analisar todo o material com calma.</p>
           <CTA />
